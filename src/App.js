@@ -5,6 +5,7 @@ let message = "";
 class App {
   async run() {
     await this.userInput();
+    await Console.print(message);
   }
 
   async userInput() {
