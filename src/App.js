@@ -4,9 +4,9 @@ let message = "";
 class App {
   async run() {
     await this.userInput();
-    await Console.print(message);
     let parseMessage = this.parseInput(message);
-    Console.print(parseMessage);
+    const sum = parseMessage.reduce((a, b) => a + b, 0);
+    console.log(`${sum}`);
   }
 
   async userInput() {
@@ -14,7 +14,7 @@ class App {
   }
 
   parseInput(string) {
-    const result = string.split(/[, :]/);
+    const result = string.split(/[, :]/).map(Number);
     return result;
   }
 }
