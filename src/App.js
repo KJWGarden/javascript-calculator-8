@@ -19,6 +19,11 @@ class App {
     string = string.replace("\\n", "\n"); // 문자열 안 \n 을 실제 줄바꿈으로 치환
     const customCheck = /^\/\/(.)\n/;
 
+    // 커스텀 구분자 예외처리
+    if (string.startsWith("//") && !customCheck.test(string)) {
+      throw new Error("[ERROR] 잘못된 커스텀 구분자 형식입니다.");
+    }
+
     // 빈 문자열 입력 시 0 반환 처리
     if (!string || string.trim() === "") {
       return [0];
