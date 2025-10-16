@@ -5,6 +5,7 @@ class App {
   async run() {
     await this.userInput();
     let parseMessage = this.parseInput(message);
+    this.validate(parseMessage);
     const sum = parseMessage.reduce((a, b) => a + b, 0);
     console.log(`${sum}`);
   }
@@ -27,10 +28,22 @@ class App {
       const match = string.match(customCheck);
       const customDivider = match[1]; // 커스텀 구분자 저장
       const numstr = string.split("\n")[1];
-
       return numstr.split(customDivider).map(Number);
     } else {
       return string.split(/[, :]/).map(Number);
+    }
+  }
+
+  // 예외 처리 함수
+  validate(string) {
+    // 숫자가 아닌 값 입력 시 에러
+    if (string.some((num) => isNaN(num))) {
+      throw new Error("[ERROR] 숫자만 입력해야 합니다.");
+    }
+
+    // 음수 입력 시 에러
+    if (string.some((num) => num < 0)) {
+      throw new Error("[ERROR] 음수는 사용할 수 없습니다.");
     }
   }
 }
