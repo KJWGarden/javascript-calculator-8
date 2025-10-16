@@ -3,6 +3,7 @@ import { Console } from "@woowacourse/mission-utils";
 let message = "";
 class App {
   async run() {
+    Console.print("덧셈할 문자열을 입력해 주세요.");
     await this.userInput();
     let parseMessage = this.parseInput(message);
     this.validate(parseMessage);
