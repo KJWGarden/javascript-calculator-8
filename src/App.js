@@ -7,7 +7,7 @@ class App {
     let parseMessage = this.parseInput(message);
     this.validate(parseMessage);
     const sum = parseMessage.reduce((a, b) => a + b, 0);
-    console.log(`${sum}`);
+    Console.print(`결과 : ${sum}`);
   }
 
   async userInput() {
