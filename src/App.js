@@ -34,6 +34,15 @@ class App {
       const match = string.match(customCheck);
       const customDivider = match[1]; // 커스텀 구분자 저장
       const numstr = string.split("\n")[1];
+
+      // 커스텀 구분자 외의 구분자 사용 했을 때 예외 처리
+      const invalidDivider = new RegExp(`[^0-9${customDivider}]`);
+      if (invalidDivider.test(numstr)) {
+        throw new Error(
+          "[ERROR] 커스텀 구분자 외의 구분자는 사용할 수 없습니다."
+        );
+      }
+
       return numstr.split(customDivider).map(Number);
     } else {
       return string.split(/[, :]/).map(Number);
