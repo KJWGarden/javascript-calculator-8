@@ -16,8 +16,14 @@ class App {
   parseInput(string) {
     string = string.replace("\\n", "\n"); // 문자열 안 \n 을 실제 줄바꿈으로 치환
     const customCheck = /^\/\/(.)\n/;
+
+    // 빈 문자열 입력 시 0 반환 처리
+    if (!string || string.trim() === "") {
+      return [0];
+    }
+
+    // 커스텀 구분자 일 때
     if (customCheck.test(string)) {
-      // 커스텀 구분자 일 때
       const match = string.match(customCheck);
       const customDivider = match[1]; // 커스텀 구분자 저장
       const numstr = string.split("\n")[1];
